@@ -8,8 +8,17 @@ public class Cutter : MonoBehaviour
     [SerializeField] private Transform rightPosition;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private bool isLeft;
-    [SerializeField] private bool isCutted;
+    public bool IsLeft
+    {
+        get { return isLeft; }
+    }
 
+    [SerializeField] private bool isCutted;
+    public bool IsCutted
+    {
+        get { return isCutted; }
+        set { isCutted = value; }
+    }
     void Start()
     {
         isCutted = true;
@@ -17,6 +26,7 @@ public class Cutter : MonoBehaviour
 
     public void OnClickRightButton()
     {
+        Debug.Log("OnClickRightButton");
         isCutted = false;
         isLeft = false;
         spriteRenderer.flipX = true;
@@ -25,30 +35,12 @@ public class Cutter : MonoBehaviour
 
     public void OnClickLeftButton()
     {
+        Debug.Log("OnClickLeftButton");
         isCutted = false;
         isLeft = true;
         spriteRenderer.flipX = false;
         transform.position = leftPosition.position;
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        Debug.Log("Пенечек");
-        if (isCutted == false)
-        {
-            if ((collision.gameObject.tag == "left" && isLeft) || (collision.gameObject.tag == "right" && !isLeft))
-            {
-                Debug.LogError("You lose");
-                //Destroy(gameObject);
-            }
-
-            Destroy(collision.gameObject);
-            isCutted = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        isCutted = true;
-    }
+   
 }
