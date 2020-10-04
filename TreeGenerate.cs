@@ -10,7 +10,7 @@ public class TreeGenerate : MonoBehaviour
     private int defaultStumpCount; //сколько обычных пеньков было от прошлой ветки
     [SerializeField] private int defaultStumpQuantity=2; //Сколько обычных пеньков должно быть между ветками
 
-    public List<SpawnTree> ins = new List<SpawnTree>();
+    [SerializeField] public List<SpawnTree> ins = new List<SpawnTree>();
 
     private GameObject tempTree;
 
@@ -46,7 +46,7 @@ public class TreeGenerate : MonoBehaviour
         }
         else
         {
-            tempTree = (GameObject)Instantiate(treePrefabs[Random.Range(0, treePrefabs.Length - 1)], transform);
+            tempTree = (GameObject)Instantiate(treePrefabs[Random.Range(0, treePrefabs.Length)], transform);
             defaultStumpCount = 0;
         }
 
@@ -54,6 +54,12 @@ public class TreeGenerate : MonoBehaviour
         tree.instantiated = tempTree;
         ins.Add(tree);
         tempTree.transform.name = tempTree.transform.name + ins.Count;
+    }
+
+    public void DestroyFirstStump()
+    {
+        Destroy(ins[0].instantiated);
+        ins.Remove(ins[0]);
     }
     
 }

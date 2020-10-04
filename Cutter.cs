@@ -21,13 +21,12 @@ public class Cutter : MonoBehaviour
     }
     void Start()
     {
-        isCutted = true;
+      //  isCutted = true;
     }
 
     public void OnClickRightButton()
     {
-        Debug.Log("OnClickRightButton");
-        isCutted = false;
+     //   isCutted = false;
         isLeft = false;
         spriteRenderer.flipX = true;
         transform.position = rightPosition.position;
@@ -35,8 +34,7 @@ public class Cutter : MonoBehaviour
 
     public void OnClickLeftButton()
     {
-        Debug.Log("OnClickLeftButton");
-        isCutted = false;
+     //   isCutted = false;
         isLeft = true;
         spriteRenderer.flipX = false;
         transform.position = leftPosition.position;
